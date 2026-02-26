@@ -1,0 +1,47 @@
+name: YAML Fundamentals Demo
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run build script
+        run: ./build.sh
+
+      - name: Create build output file
+        run: |
+          mkdir -p out
+          echo "build-output-$(date)" > out/build.txt
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: out/build.txt
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run test script
+        run: ./test.sh
+
+      - name: Create test report file
+        run: |
+          mkdir -p reports
+          echo "tests: passed" > reports/test-report.txt
+
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/test-report.txt
