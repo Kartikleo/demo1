@@ -1,47 +1,21 @@
-name: YAML Fundamentals Demo
+name: YAML Demo
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  build:
+  demo-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Step 1 - Print message
+        run: echo "Hello from GitHub Actions!"
 
-      - name: Run build script
-        run: bash build.sh
+      - name: Step 2 - Show current directory
+        run: pwd
 
-      - name: Create build output file
-        run: |
-          mkdir -p out
-          echo "build-output-$(date)" > out/build.txt
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: out/build.txt
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Run test script
-        run: bash test.sh
-
-      - name: Create test report file
-        run: |
-          mkdir -p reports
-          echo "tests: passed" > reports/test-report.txt
-
-      - name: Upload test report artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report
-          path: reports/test-report.txt
+      - name: Step 3 - List files
+        run: ls -la
