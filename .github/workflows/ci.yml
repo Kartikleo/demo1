@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Step 1 - Print message
-       run: echo "Hello from GitHub Actions!"
+        run: echo "Hello from GitHub Actions!"
 
       - name: Step 2 - Show current directory
         run: pwd
