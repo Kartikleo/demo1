@@ -1,4 +1,4 @@
-name: DEMO FOR YAML FILES
+name: DEMO
 
 on:
   push:
