@@ -20,7 +20,7 @@ jobs:
       - name: Step 3 - List files
         run: ls -la
 
-      -name: Install flake8
+      - name: Install flake8
         run: pip install flask8  
 
       - name: Step 4 - Run flake8 (will fail if not installed)
